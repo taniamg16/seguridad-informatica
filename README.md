@@ -5,3 +5,4 @@ Introducción al desarrollo web | Proyecto integrador 1
 Tania Mendoza González
 Arindal Contreras Arellano
 Bernardo del Rio Madero
+Johan Santiago Sánchez Rosales 
