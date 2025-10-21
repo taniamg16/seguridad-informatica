@@ -1,0 +1,31 @@
+.oferta-img{
+  width:100%;
+  height:300px;        
+  object-fit:cover;
+  display:block;
+  margin-inline:auto;  
+}
+
+@media (min-width:768px){  
+  .oferta-img{ height:240px; }
+}
+@media (min-width:992px){  
+  .oferta-img{ width:90%; height:450px; } 
+}
+
+@media (max-width: 991px) { 
+    .navbar-collapse {
+      background-color: white !important;
+      padding: 1rem; 
+    }
+
+    .navbar-collapse .nav-link {
+      color: #000 !important; 
+    }
+}
+
+.img-cuadrada {
+  width: 500px;     
+  height: 500px;    
+  object-fit: cover; 
+}
