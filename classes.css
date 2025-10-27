@@ -29,3 +29,10 @@
   height: 500px;    
   object-fit: cover; 
 }
+
+.frase{
+  min-height: 25vh;                 
+  background-image: url("https://www.museo-soumaya.org/wp-content/uploads/2025/06/the-museo-soumaya-in-mexico-city-6068017.jpeg");
+  background-size: cover;
+  background-position: center;
+}
