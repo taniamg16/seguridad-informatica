@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Seguridad Informática</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="../css/classes.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="../js/gráficas.js"></script>
+
+  </head>
+  <body>
+    <header>
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-transparent position-absolute top-0 start-0 w-100" style="z-index: 1030;">
+            <div class="container-fluid px-3 px-lg-5 mx-lg-5">
+                <a class="navbar-brand fw-bold fs-5 fs-lg-4" href="">Seguridad Informática</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto gap-2 gap-lg-4 fs-6 fs-lg-4 text-white py-2 py-lg-0">
+                    <a class="nav-link" href="#Principal">Inicio</a>
+                    <a class="nav-link" href="#Estadísticas">Estadísticas</a>
+                    <a class="nav-link" href="#Consejos">Consejos</a>   
+                    <a class="nav-link" href="">Noticias de ciberataques</a>                
+                    <a class="btn btn-primary btn-lg d-none d-lg-inline-flex ms-lg-2" href="" role="button">
+                      Quiz interactivo
+                    </a>
+                    
+                  
+                </div>
+
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+         <section id="Principal" class="d-flex align-items-center justify-content-center text-center bg-dark bg-opacity-100"
+            style="background-image: url('img/candado.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    height: 75vh;">
+              <div class="position-absolute top-0 start-0 w-100 h-75 bg-dark bg-opacity-75"></div>
+              <div class="position-relative pt-5 w-100 w-md-75 w-lg-50 mx-auto px-3 px-md-4" style="max-width: 800px;">
+                <h1 class="display-3 fw-bold text-white px-0 mb-3">Seguridad Informática: Amenazas y Buenas Prácticas</h1>
+                <p class="lead text-white mb-4" style="max-width: 650px; margin: 0 auto;">
+                  En un mundo digital en constante cambio, las amenazas crecen y ponen en riesgo no solo el dinero, 
+                  sino también la confianza y la estabilidad. La ciberseguridad ya no es opcional: es esencial para 
+                  proteger lo que más valoramos.
+                </p>
+                <a class="btn btn-primary btn-lg" href="#Estadísticas" role="button">Descubre más</a>
+
+              </div>
+        </section>
+
+        <section id="Estadísticas" class="p-3 p-md-4">
+            <div class="container px-2 px-md-4">
+              <h2 class="display-5 fw-bold text-center mb-2 mt-4  px-0 px-lg-5">
+                La realidad actual es preocupante
+              </h2>
+              <p class="text-center text-secondary mb-5 w-75 mx-auto px-lg-5">
+                Vivimos en una era donde la tecnología avanza más rápido que nuestra capacidad de protegerla. 
+                Cada clic, descarga o conexión puede abrir una puerta invisible a los cibercriminales, y el costo de 
+                ignorarlo ya se mide en billones de dólares. Empresas, gobiernos y usuarios comunes enfrentan un escenario 
+                donde los ataques son constantes y cada vez más sofisticados. México no es la excepción: somos uno de los 
+                países más afectados por el ransomware y el robo de datos.
+              </p>
+              
+              <!-- Grid -->
+              <div class="row g-3">
+
+                <!-- Col 1 -->
+                <div class="col-12 col-md-4">
+                  <img class="img-fluid"
+                        src="img/ciberattack.jpg"
+                        alt="Imagen de ataques cibernéticos"
+                        style="height:200px; object-fit:cover; width:100%;">
+                  <h3 class="h4 fw-bold mb-2 mt-3 text-start px-lg-3">Cada empresa sufre más de mil ataques semanales</h3>
+                  <p class="text-start text-secondary mb-0 px-lg-3">
+                    En 2024 los ataques aumentaron un 30 %, con un promedio de 1 636 ataques por organización 
+                    cada semana.
+                  </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="col-12 col-md-4">
+                  <div class="p-2">
+                    <canvas id="graficaCiber" style="width: 100%; max-width: 500px; height: 200px;"></canvas>
+                  </div>
+                  <h3 class="h4 fw-bold mb-2 text-start px-lg-3">El cibercrimen ya cuesta billones</h3>
+                  <p class="text-start text-secondary mb-0 px-lg-3">
+                    Las pérdidas globales por ciberataques superarán los 10.5 billones USD en 2025, más 
+                    que el PIB de muchos países.
+                  </p>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="col-12 col-md-4">
+                    <img class="img-fluid height-100"
+                        src="img/ransomware.jpg"
+                        alt="Imagen de ransomware"
+                        style="height:200px; object-fit:cover; width:100%;">
+                  <h3 class="h4 fw-bold mb-2 mt-3 text-start px-lg-3">México lidera en ataques de ransomware</h3>
+                  <p class="text-start text-secondary mb-0 px-lg-3">
+                    El 39 % de los incidentes en empresas mexicanas son ransomware, con pérdidas de hasta 
+                    7.2 millones MXN por ataque.
+                  </p>
+                </div>
+              </div>
+
+          </section>
+
+
+       
+  </div>
+          
+          <section id="Consejos" class="p-3 p-md-4">
+              <div class="container px-2 px-md-4">
+                <h2 class="display-5 fw-bold text-center mt-5 mb-2 px-0 px-lg-5">
+                  5 consejos prácticos sobre seguridad informática
+                </h2>
+                <p class="text-center text-secondary mb-5">
+                    Proteger tu información no requiere ser experto: basta con aplicar hábitos
+                     simples que reducen drásticamente el riesgo de sufrir ataques. Aquí te mostramos 
+                     cómo proteger lo que más importa.
+
+                </p>
+                <div class="row g-3 align-items-center ">
+                  <!--Imagen 1-->
+                  <div class="col-md-6 text-center order-1 order-md-1">
+                    <img class="img-fluid mb-4 img-cuadrada"
+                        src="https://www.museo-soumaya.org/wp-content/uploads/2025/06/soumaya-museum-during-dusk-11643659.jpeg"
+                        alt="Imagen del consejo 1">
+                  </div>
+                  <!--Texto 1-->
+                  <div class="col-12 col-md-6 text-center text-md-start mb-5 order-2 order-md-2">
+                    <h3>1. Actualiza tus dispositivos y elimina lo que no uses</h3>
+                    <p>
+                      Las actualizaciones no solo cambian el diseño o agregan funciones, también corrigen 
+                      fallas que los hackers aprovechan para infiltrarse. Mantén tu sistema, navegador y apps al día. 
+                      Si ya no usas una aplicación, elimínala: menos programas significan menos riesgos.
+                    </p>
+                    <a href="" class="btn btn-primary btn-lg">Aprender más</a>
+                  </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                  <!--Texto 2-->
+                  <div class="col-12 col-md-6 text-center text-md-start order-4 order-md-3">
+                    <div class="text-center text-md-start ps-md-5">
+                      <h3>2. Usa passphrases y autenticación multifactor (MFA)</h3>
+                      <p>
+                        En lugar de contraseñas difíciles de recordar, usa passphrases: frases largas 
+                        con palabras comunes, por ejemplo, “meEncantaElCaféConCanela2025!”. Son más seguras 
+                        y fáciles de recordar que algo como “P@skjdjf384”. Además, activa la verificación en 
+                        dos pasos (código por app o mensaje) en tus cuentas más importantes.
+                      </p>
+                      <a href="" class="btn btn-primary btn-lg">Aprender más</a>
+                    </div>
+
+                  </div>
+                  <!--Imagen 2-->
+                  <div class="col-12 col-md-6 text-center order-3 order-md-4">
+                    <img class="img-fluid mb-4 img-cuadrada"
+                          src="https://www.museo-soumaya.org/wp-content/uploads/2025/06/soumaya2-1024x683.jpg"
+                          alt="Img consejo 2">
+                  </div>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center ">
+                  <!--Imagen 3-->
+                  <div class="col-md-6 text-center order-1 order-md-1">
+                    <img class="img-fluid mb-4 img-cuadrada"
+                        src="https://www.museo-soumaya.org/wp-content/uploads/2025/06/soumaya-museum-during-dusk-11643659.jpeg"
+                        alt="Imagen del consejo 3">
+                  </div>
+                  <!--Texto 3-->
+                  <div class="col-12 col-md-6 text-center text-md-start mb-5 order-2 order-md-2">
+                    <h3>3. Piensa antes de hacer clic o compartir</h3>
+                    <p>
+                      Los ataques de phishing suelen disfrazarse de mensajes urgentes: “tu cuenta será 
+                      bloqueada” o “haz clic aquí para recuperar acceso”. Si algo parece sospechoso, verifica 
+                      primero el remitente o entra directamente al sitio oficial. No compartas enlaces ni archivos 
+                      sin revisar.
+                    </p>
+                    <a href="" class="btn btn-primary btn-lg">Aprender más</a>
+                  </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                  <!--Texto 4-->
+                  <div class="col-12 col-md-6 text-center text-md-start order-4 order-md-3">
+                    <div class="text-center text-md-start ps-md-5">
+                      <h3>4. Haz copias de seguridad y guarda tus archivos cifrados</h3>
+                      <p>
+                        Guarda tus documentos importantes en la nube o en un disco externo. 
+                        Algunas plataformas ofrecen cifrado automático, lo que significa que solo
+                         tú puedes leer esos datos. Haz un respaldo al menos una vez al mes para evitar
+                          perder todo si tu equipo falla o es atacado.
+
+                      </p>
+                      <a href="" class="btn btn-primary btn-lg">Aprender más</a>
+                    </div>
+
+                  </div>
+                  <!--Imagen 4-->
+                  <div class="col-12 col-md-6 text-center order-3 order-md-4">
+                    <img class="img-fluid mb-4 img-cuadrada"
+                          src="https://www.museo-soumaya.org/wp-content/uploads/2025/06/soumaya2-1024x683.jpg"
+                          alt="Img consejo 4">
+                  </div>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center ">
+                  <!--Imagen 5-->
+                  <div class="col-md-6 text-center order-1 order-md-1">
+                    <img class="img-fluid mb-4 img-cuadrada"
+                        src="https://www.museo-soumaya.org/wp-content/uploads/2025/06/soumaya-museum-during-dusk-11643659.jpeg"
+                        alt="Imagen del consejo 5">
+                  </div>
+                  <!--Texto 5-->
+                  <div class="col-12 col-md-6 text-center text-md-start mb-5 order-2 order-md-2">
+                    <h3>5. Monitorea tus cuentas y dispositivos</h3>
+                    <p>
+                      No necesitas software avanzado para mantenerte protegido. Usa la Revisión de seguridad de Google o el
+                      panel de Microsoft para ver desde dónde accediste a tus cuentas. Verifica si tu correo ha sido filtrado
+                      con Have I Been Pwned y mantén activo un antivirus básico como Windows Defender o Bitdefender Free. 
+                      En tu celular, revisa el historial de seguridad de Android o iOS para detectar apps sospechosas. 
+                      Pequeñas revisiones periódicas pueden evitar grandes problemas.
+                    </p>
+                    <a href="" class="btn btn-primary btn-lg">Aprender más</a>
+                  </div>
+                </div>
+
+
+            </section>
+
+            <section id="frase" class="frase position-relative text-white py-5">
+              <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-75"></div>
+              <div class="position-relative container d-flex flex-column align-items-center text-center">
+                <p class="fs-5 fs-md-4 fw-semibold w-100 w-md-50 lh-base mb-3 mx-auto text-center">
+                  La ciberseguridad no se instala, se aprende.
+                </p> 
+                <p class="fs-5 fs-md-4 fw-semibold w-100 w-md-50 lh-base mb-3 mx-auto text-center">                  
+                  Tu mejor firewall es la educación: ningún antivirus puede protegerte de lo que aún no sabes.
+                </p>                
+              </div>
+            </section>
+
+            <section id="Quiz" class="p-3 p-md-4">
+                <h2 class="display-5 fw-bold text-center mb-2 mt-4  px-0 px-lg-5">
+                    Quiz interactivo
+                </h2>           
+                <p class="text-center text-secondary mb-5 w-75 mx-auto px-lg-5">
+                    Pon a prueba tus conocimientos sobre seguridad informática y descubre si tus hábitos digitales te protegen
+                </p>
+                <!--Aquí va la quiz-->
+                <div class="mx-auto text-center">
+                    <a href="quiz.html" target="_blank" rel="noopener" class="btn btn-outline-info btn-lg">Probar mis conocimientos</a>
+                </div>
+            </section>
+
+          
+
+          <section id="Noticias" class="p-3 p-md-4">
+            <h2 class="display-5 fw-bold text-center mb-2 mt-4  px-0 px-lg-5">
+                Noticias de ciberataques esta semana
+            </h2>
+            <p class="text-center text-secondary mb-5 w-75 mx-auto px-lg-5">
+                Hoy más que nunca, estar informados es fundamental. Mantente al día con las últimas alertas de ciberseguridad.
+
+            </p>
+            <div class="container py-4">
+              <h1 class="h3 text-success mb-0">Alertas de Ciberseguridad</h1>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <button class="btn btn-success btn-lg" id="btnRecargar">Recargar</button>
+                </div>
+
+                <p id="msg" class="text-secondary small"></p>
+
+                <div class="row g-3 mb-3" id="contenedor-noticias"></div>
+
+            </div>
+          </section>
+
+          <a href="#Principal" 
+            class="btn btn-primary position-fixed bottom-0 end-0 m-4 shadow"
+            style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+            <span>^</span>
+          </a>
+    </main>
+
+    <footer>
+      <!-- MOdificar formato-->
+      <div class="container py-5 text-center">
+        <p class="mb-0 mt-0 text-secondary">¿Quieres aprender más?</p>
+        <p class="mb-0 mt-0 text-secondary">Contáctanos</p>
+        <!-- Aquí va form para dejar correo y botón de enviar-->
+         <!-- Se usa local storage o session storage para almacenarlo-->
+         
+      </div>
+
+    </footer>
+    
+    
+    <script src="./api/api.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
