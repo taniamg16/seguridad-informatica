@@ -40,6 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const quizCont = document.getElementById("quiz");
     const siguienteBtn = document.getElementById("siguientebtn");
     const respCont = document.getElementById("result");
+
+     try {
+        const guardado = localStorage.getItem("quizEstado");
+        if (guardado) {
+            const { preguntaActual: preg, calif: c, respU: r } = JSON.parse(guardado);
+            if (Number.isInteger(preg) && Array.isArray(r)) {
+                preguntaActual = preg;
+                calif = c ?? 0;
+                respU = r;
+            }
+        }
+    } catch (e) {
+        console.warn("No se pudo leer quizEstado:", e);
+    }
     
     function renderBoton() {
     siguienteBtn.textContent = (preguntaActual === quizData.length - 1)
@@ -71,6 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
         renderBoton();
     }
 
+    function guardarProceso() {
+        localStorage.setItem("quizEstado", JSON.stringify({
+        preguntaActual,
+        calif,
+        respU
+        }));
+  }
+
     function seleccionR(e){
         const selecc=e.target;
         const respI= parseInt(selecc.getAttribute("data-index"));
@@ -85,15 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
         } else{
             selecc.style.background = "#FF5555";;
         }
-        
+
+        guardarProceso() 
+
         document.querySelectorAll(".resp").forEach(z => z.style.pointerEvents = "none");
     }
 
+
     siguienteBtn.addEventListener("click", () => {
-        if( respU[preguntaActual] == undefined) respU[preguntaActual] = null;
+        if( respU[preguntaActual] == undefined) {
+            respU[preguntaActual] = null;
+            guardarProceso();
+        }
 
         preguntaActual++;
         if(preguntaActual < quizData.length) {
+            guardarProceso();
             cargaPregunta();
         } else{
             mostrarRespuesta();
@@ -101,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function mostrarRespuesta(){
+        localStorage.removeItem("quizEstado");
         quizCont.style.display = "none";
         siguienteBtn.style.display = "none";
 
