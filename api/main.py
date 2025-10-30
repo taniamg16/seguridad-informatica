@@ -42,7 +42,7 @@ def seed():
               fecha="2025-10-24T00:00:00", severidad="Alta",
               descripcion="Un vasto operativo de “smishing” (phishing vía SMS) con más de 194 000 dominios registrados desde enero de 2024 apunta a múltiples industrias globales con falsos avisos de paquetes o infracciones.",
               url="https://thehackernews.com/2025/10/smishing-triad-linked-to-194000.html", tags=["phishing","smishing"],
-              imagen="api/static/smishing.jpg", alt="Imagen de campaña de smishing"
+              imagen="../api/static/smishing.jpg", alt="Imagen de campaña de smishing"
               )]
     NEXT_ID += 1
     alertas.append(
@@ -50,7 +50,7 @@ def seed():
               fecha="2025-10-24T00:00:00", severidad="Alta",
               descripcion="Microsoft parchó de urgencia una vulnerabilidad de ejecución remota (CVE-2025-59287) en WSUS que ya está siendo explotada en entornos corporativos.",
               url="https://thehackernews.com/2025/10/microsoft-issues-emergency-patch-for.html", tags=["vulnerabilidad","windows-server", "explotación-activa"],
-              imagen="api/static/windows.jpg", alt="Imagen de Windows Server"
+              imagen="../api/static/windows.jpg", alt="Imagen de Windows Server"
               )
     )
     NEXT_ID += 1
@@ -59,7 +59,7 @@ def seed():
               fecha="2025-10-24T00:00:00", severidad="Alta",
               descripcion="Una red maliciosa ha publicado más de 3 000 vídeos en YouTube usando cuentas comprometidas para distribuir malware tipo “stealer” aprovechando tutoriales populares.",
               url="https://thehackernews.com/2025/10/3000-youtube-videos-exposed-as-malware.html", tags=["malware","youtube", "ghost-network"],
-              imagen="api/static/youtube.jpg", alt="Imagen de Youtube"
+              imagen="../api/static/youtube.jpg", alt="Imagen de Youtube"
               )
     )
     NEXT_ID += 1
@@ -68,7 +68,7 @@ def seed():
               fecha="2025-10-24T00:01:00", severidad="Alta",
               descripcion="El malware apodado “GlassWorm” se difunde a través de extensiones de VS Code “hijackeadas”, usando blockchain Solana y Calendar de Google para control de comando, comprometiendo el entorno de desarrolladores.",
               url="https://thehackernews.com/2025/10/self-spreading-glassworm-infects-vs.html", tags=["malware","gusano", "vs-code"],
-              imagen="api/static/glassworm.jpg", alt="Imagen de operación GlassWorm"
+              imagen="../api/static/glassworm.jpg", alt="Imagen de operación GlassWorm"
               )
     )
     NEXT_ID += 1
@@ -77,7 +77,7 @@ def seed():
               fecha="2025-10-23T00:00:00", severidad="Alta",
               descripcion="El grupo de amenazas vinculado a Lazarus Group usa falsas ofertas laborales para acceder a compañías europeas del sector UAV y sustraer información para el programa de drones norcoreano",
               url="https://thehackernews.com/2025/10/north-korean-hackers-lure-defense.html", tags=["espionaje","uav-drones", "lazarus-group"],
-              imagen="api/static/drone-hacking.jpg", alt="Imagen Drone Hacking"
+              imagen="../api/static/drone-hacking.jpg", alt="Imagen Drone Hacking"
               )
     )
     NEXT_ID += 1
@@ -86,7 +86,7 @@ def seed():
               fecha="2025-10-22T00:00:00", severidad="Alta",
               descripcion="La firma Kaspersky identificó que la APT PassiveNeuron ha estado usando los backdoors personalizados Neursite y NeuralExecutor para infiltrarse en servidores Windows Server de gobiernos, finanzas e industria en Asia, África y América Latina.",
               url="https://thehackernews.com/2025/10/researchers-identify-passiveneuron-apt.html", tags=["apt","espionaje", "windows-server"],
-              imagen="api/static/cyberattack.jpg", alt="Imagen de Cyberattack"
+              imagen="../api/static/cyberattack.jpg", alt="Imagen de Cyberattack"
               )
     )
     DB.extend(alertas)
