@@ -24,7 +24,7 @@
                     <a class="nav-link" href="#Estadísticas">Estadísticas</a>
                     <a class="nav-link" href="#Consejos">Consejos</a>   
                     <a class="nav-link" href="">Noticias de ciberataques</a>                
-                    <a class="btn btn-primary btn-lg d-none d-lg-inline-flex ms-lg-2" href="" role="button">
+                    <a class="btn btn-primary btn-lg d-none d-lg-inline-flex ms-lg-2" href="html/quiz.html" role="button" target="_blank">
                       Quiz interactivo
                     </a>
                     
@@ -232,9 +232,7 @@
                     <a href="" class="btn btn-primary btn-lg">Aprender más</a>
                   </div>
                 </div>
-
-
-            </section>
+          </section>
 
             <section id="frase" class="frase position-relative text-white py-5">
               <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-75"></div>
@@ -247,22 +245,7 @@
                 </p>                
               </div>
             </section>
-
-            <section id="Quiz" class="p-3 p-md-4">
-                <h2 class="display-5 fw-bold text-center mb-2 mt-4  px-0 px-lg-5">
-                    Quiz interactivo
-                </h2>           
-                <p class="text-center text-secondary mb-5 w-75 mx-auto px-lg-5">
-                    Pon a prueba tus conocimientos sobre seguridad informática y descubre si tus hábitos digitales te protegen
-                </p>
-                <!--Aquí va la quiz-->
-                <div class="container-quiz mx-auto text-center">
-                    <div id="quiz"></div>
-                    <button id="siguientebtn" class="btn btn-outline-info mt-5">Siguiente</button>
-                    <div id="result" class="result mt-4"></div>
-                </div>
-            </section>
-
+          
           
 
           <section id="Noticias" class="p-3 p-md-4">
@@ -294,20 +277,38 @@
     </main>
 
     <footer>
-      <!-- MOdificar formato-->
-      <div class="container py-5 text-center">
-        <p class="mb-0 mt-0 text-secondary">¿Quieres aprender más?</p>
-        <p class="mb-0 mt-0 text-secondary">Contáctanos</p>
-        <!-- Aquí va form para dejar correo y botón de enviar-->
-         <!-- Se usa local storage o session storage para almacenarlo-->
-         
-      </div>
+  <div class="container py-5 text-center">
+    <p class="mb-0 mt-0 text-secondary">¿Quieres aprender más?</p>
+    <p class="mb-3 mt-0 text-secondary">Contáctanos</p>
 
-    </footer>
-    
-    
+    <form id="form"
+          class="d-flex justify-content-center align-items-center gap-2 flex-wrap"
+          novalidate>
+      <!-- TIP opcional: name="email" (no afecta al JS) -->
+      <input
+        type="email"
+        id="Input"
+        class="form-control w-auto"
+        placeholder="Ingresa tu correo electrónico"
+        required
+        style="min-width: 260px;"
+      >
+      <button type="submit" id="emailSubmit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</footer>
+
+<!-- Banner: el JS busca id="sBanner" -->
+<div id="sBanner"
+     class="alert alert-success position-fixed start-50 translate-middle-x mb-3 shadow d-none"
+     role="alert"
+     style="z-index:1060; bottom: 80px;">
+  <!-- El texto lo rellena el JS -->
+</div>
+
     <script src="./api/api.js" defer></script>
-    <script src="quiz.js" defer></script>
+    <script src="js/quiz.js" defer></script>
+    <script src="js/footer.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>

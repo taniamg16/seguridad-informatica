@@ -110,3 +110,8 @@ td.wrong {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+#saveBanner {
+  max-width: min(90vw, 520px);
+  text-align: center;
+}
