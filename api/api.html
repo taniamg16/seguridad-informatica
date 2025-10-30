@@ -8,6 +8,10 @@
   <link href="clases.css" rel="stylesheet">
 </head>
 <body>
+  <header class="container py-3">
+    <a id="volver" class="btn btn-outline-dark">&larr; Regresar</a>
+  </header>
+
   <div class="container py-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h1 class="h3 text-success mb-0">Alertas de Ciberseguridad</h1>
@@ -20,9 +24,17 @@
 
   </div>
 
-  
-
   <script src="api.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script> //cierra pestaña de noticias al presionar "regresar" 
+      document.getElementById('volver').addEventListener('click', () => {
+        if (window.opener && !window.opener.closed) {
+          try { window.opener.focus(); } catch (e) {}
+          window.close(); 
+          return;
+        }
+        window.location.href = '../html/index.html';
+      });
+  </script>
 </body>
 </html>
