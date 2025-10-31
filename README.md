@@ -50,6 +50,17 @@ seguridad-infromática/
     ````
     open index.html
     ````
+    
+## Back End
+```
+seguridad-infromática/
+|
+├── api/
+│   └── main.py
+```
+
+## Archivo main.py 
+Es un backend API que sirve alertas de ciberseguridad usando FastAPI. Nos proporciona datos sobre phishing masivo, videos infectados, espionaje, etc
 ## Instrucciones para levantar el backend
 1. Crea y activa un entorno virtual:
     ````
