@@ -2,15 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const API = "http://127.0.0.1:8000"; // Backend local
   const $ = (id) => document.getElementById(id);
 
-  //const $lista = $("lista"); // contenedor de tarjetas
+    
   const $msg   = $("msg");   // mensajes al usuario
   const $btn   = $("btnRecargar");
   const $lista = document.getElementById("contenedor-noticias");
+  const $form  = $("form-alerta");
+  const $formEdit = $("form-actualizar");
 
 
-  // Convierte una alerta en tarjeta HTML
+  // convierte una alerta en tarjeta HTML
   function card(a) {
-    const fecha = new Date(a.fecha ?? a.timestamp); // por si tu backend aún tiene 'timestamp'
+    const fecha = new Date(a.fecha ?? a.timestamp); 
     const when  = fecha.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
 
     const tags = (a.tags || [])
@@ -23,8 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
           ${a.url ? `
             <a href="${a.url}" target="_blank" rel="noopener">
               <img src="${a.imagen || 'https://via.placeholder.com/400x250'}"
-                   class="card-img-top"
-                   alt="${a.alt || a.titulo}">
+                class="card-img-top"
+                alt="${a.alt || a.titulo}"
+                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x250'; alert('Error al cargar la imagen: ${a.imagen || 'sin ruta'}');">
+        
             </a>
           ` : `
             <img src="${a.imagen || 'https://via.placeholder.com/400x250'}"
@@ -73,4 +77,105 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Carga inicial
   cargar();
+
+$form.addEventListener("submit", async (evt) => {
+    evt.preventDefault();
+
+    const titulo      = $("titulo").value.trim();
+    const severidad   = $("severidad").value;
+    const url         = $("url").value.trim() || null;
+    const descripcion = $("descripcion").value.trim() || null;
+    const imagen      = $("imagen").value.trim() || null;
+    const tagsStr     = $("tags").value.trim();
+    const $form  = $("form-alerta");
+
+    const tags = tagsStr
+      ? tagsStr.split(",").map(t => t.trim()).filter(t => t.length > 0)
+      : [];
+
+  const nuevaAlerta = {
+      titulo: titulo,
+      severidad: severidad,
+      descripcion: descripcion,
+      url: url,
+      tags: tags,
+      imagen: imagen,
+      alt: titulo
+    };
+
+    try {
+      $msg.textContent = "Guardando alerta...";
+      const res = await fetch(`${API}/api/alerts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(nuevaAlerta)
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Error backend:", errText);
+        throw new Error("Error al guardar la alerta");
+      }
+
+      $form.reset();
+      $msg.textContent = "Alerta guardada correctamente.";
+
+      cargar();
+    } catch (e) {
+      console.error(e);
+      $msg.textContent = "No se pudo guardar la alerta.";
+    }
+
+  });
+
+  $formEdit.addEventListener("submit", async (evt) => {
+    evt.preventDefault();
+
+    const id          = Number($("edit-id").value);
+    const titulo      = $("edit-titulo").value.trim();
+    const severidad   = $("edit-severidad").value;
+    const url         = $("edit-url").value.trim();
+    const descripcion = $("edit-descripcion").value.trim();
+    const imagen      = $("edit-imagen").value.trim();
+    const tagsStr     = $("edit-tags").value.trim();
+
+    const body = {};
+
+    if (titulo)      body.titulo = titulo;
+    if (severidad)   body.severidad = severidad;
+    if (url)         body.url = url;
+    if (descripcion) body.descripcion = descripcion;
+    if (imagen)      body.imagen = imagen;
+    if (tagsStr) {
+      body.tags = tagsStr.split(",").map(t => t.trim()).filter(t => t.length > 0);
+    }
+
+    try {
+      $msg.textContent = "Actualizando alerta...";
+      const res = await fetch(`${API}/api/alerts/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Error backend:", errText);
+        throw new Error("Error al actualizar la alerta");
+      }
+
+      $formEdit.reset();
+      $msg.textContent = "Alerta actualizada.";
+      cargar();
+    } catch (e) {
+      console.error(e);
+      $msg.textContent = "No se pudo actualizar la alerta.";
+    }
+  });
+  
+
 });

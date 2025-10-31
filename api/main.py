@@ -1,7 +1,7 @@
 # este es el backend de nuestra página web
 # funciona como api REST simple que devuelve alertas de ciberseguridad
 # main.py
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException # para las excepciones
 from fastapi.middleware.cors import CORSMiddleware # para que el frontend consuma api
 from pydantic import BaseModel # para definir modelos de datos
 from typing import List, Optional # para tipos de datos
@@ -30,6 +30,24 @@ class Alert(BaseModel):
     imagen: Optional[str] = None
     alt: Optional[str] = None
 
+class AlertCreate(BaseModel):
+    titulo: str
+    severidad: str = "Media"
+    descripcion: Optional[str] = None
+    url: Optional[str] = None
+    tags: Optional[List[str]] = []
+    imagen: Optional[str] = None
+    alt: Optional[str] = None
+
+class AlertUpdate(BaseModel):
+    titulo: Optional[str] = None
+    severidad: Optional[str] = None
+    descripcion: Optional[str] = None
+    url: Optional[str] = None
+    tags: Optional[List[str]] = None
+    imagen: Optional[str] = None
+    alt: Optional[str] = None
+    
 # Memoria
 DB: List[Alert] = [] #nuestra "base de datos" en memoria
 NEXT_ID = 1 # contador de ids
@@ -105,3 +123,51 @@ def listar_alertas():
     return DB
 
 
+@app.post("/api/alerts", response_model=Alert)
+def crear_alerta(alerta_in: AlertCreate):
+    global NEXT_ID, DB
+
+    alerta = Alert(
+        id=NEXT_ID,
+        titulo=alerta_in.titulo,
+        fecha=datetime.utcnow(),   # la fecha la pone el servidor
+        severidad=alerta_in.severidad,
+        descripcion=alerta_in.descripcion,
+        url=alerta_in.url,
+        tags=alerta_in.tags,
+        imagen=alerta_in.imagen,
+        alt=alerta_in.alt or alerta_in.titulo
+    )
+    NEXT_ID += 1
+    DB.append(alerta)
+    return alerta
+
+@app.put("/api/alerts/{alert_id}", response_model=Alert)
+def actualizar_alerta(alert_id: int, alerta_in: AlertUpdate):
+    # buscar la alerta
+    for i, alerta in enumerate(DB):
+        if alerta.id == alert_id:
+            # actualizar solo lo que venga
+            data = alerta.model_dump()
+            if alerta_in.titulo is not None:
+                data["titulo"] = alerta_in.titulo
+            if alerta_in.severidad is not None:
+                data["severidad"] = alerta_in.severidad
+            if alerta_in.descripcion is not None:
+                data["descripcion"] = alerta_in.descripcion
+            if alerta_in.url is not None:
+                data["url"] = alerta_in.url
+            if alerta_in.tags is not None:
+                data["tags"] = alerta_in.tags
+            if alerta_in.imagen is not None:
+                data["imagen"] = alerta_in.imagen
+            if alerta_in.alt is not None:
+                data["alt"] = alerta_in.alt
+
+            # volvemos a crear el objeto Alert ya actualizado
+            alerta_actualizada = Alert(**data)
+            DB[i] = alerta_actualizada
+            return alerta_actualizada
+
+    # si no lo encontró
+    raise HTTPException(status_code=404, detail="Alerta no encontrada")
