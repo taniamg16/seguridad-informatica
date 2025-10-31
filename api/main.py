@@ -12,7 +12,7 @@ app = FastAPI(title="Cyber Alerts API")
 # CORS para permitir que html (localhost) acceda a la api
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # ya que tengamos dominio cambiar por allow_origins=["http://localhost:5500","https://dominio.com"]
+    allow_origins=["*"],  # permite cualquier origen. Cambiar cuando tengamos dominio.
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -118,14 +118,34 @@ def health():
     return {"ok": True, "count": len(DB)}
 
 # get para listar alertas
+# 200 ok
 @app.get("/api/alerts", response_model=List[Alert])
-def listar_alertas():
-    return DB
+def listar_alertas(skip: int = 0, limit: int = 10):
+    # para la paginacion
+    # skip es cuantos saltarte para empezar
+    # limit es cuantos devolver como maximo
+    if skip < 0:
+        skip = 0
+    if limit <= 0:
+        limit = 10
 
+    return DB[skip : skip + limit]
 
+@app.get("/api/alerts/{alert_id}", response_model=Alert)
+def obtener_alerta(alert_id: int):
+    for a in DB:
+        if a.id == alert_id:
+            return a
+    raise HTTPException(status_code=404, detail="Alerta no encontrada")
+
+# para crear alerta
+# aquí manejamos 200 o 400 si falta título
 @app.post("/api/alerts", response_model=Alert)
 def crear_alerta(alerta_in: AlertCreate):
     global NEXT_ID, DB
+
+    if not alerta_in.titulo:
+        raise HTTPException(status_code=400, detail="El título es obligatorio")
 
     alerta = Alert(
         id=NEXT_ID,
