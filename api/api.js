@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API = "http://127.0.0.1:8000"; // Backend local
+  const isLocal = location.hostname === "127.0.0.1" 
+              || location.hostname === "localhost";
+
+  const API = isLocal
+    ? "http://127.0.0.1:8000"      // cuando estoy probando en mi compu
+    : "http://127.0.0.1:8000";       // cambiar por http://introweb.lat cuando esté en producción
+    
   const $ = (id) => document.getElementById(id);
 
     
@@ -28,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return `
       <div class="col-12 col-sm-6 col-lg-4">
-        <div class="card bg-light border-0 h-100">
+        <div class="card bg-dark text-light border-0 h-100">
           ${a.url
             ? `<a href="${a.url}" target="_blank" rel="noopener">${imgHtml}</a>`
             : imgHtml
@@ -49,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Carga las alertas desde la API y las muestra
   async function cargar(pagina = 0) {
-  const limit = 9; // número de alertas por página
+  // asegurar que sea número
+  pagina = Number(pagina) || 0;
+  const limit = 9;
   const skip  = pagina * limit;
 
   try {
@@ -75,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //funcion para buscar alerta por id
   async function buscarPorId(id) {
-  const API = "http://127.0.0.1:8000";
   const $msg = document.getElementById("msg");
   const $resultado = document.getElementById("resultado");
 
@@ -125,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Botón recargar
-  $btn.addEventListener("click", cargar);
+  $btn.addEventListener("click", () => cargar(paginaActual));
+
 
   // Carga inicial
   cargar();

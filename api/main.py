@@ -12,7 +12,7 @@ app = FastAPI(title="Cyber Alerts API")
 # CORS para permitir que html (localhost) acceda a la api
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # ya que tengamos dominio cambiar por allow_origins=["http://localhost:5500","https://dominio.com"]
+    allow_origins=["*"],  # permite cualquier origen. Cambiar cuando tengamos dominio.
     allow_methods=["*"],
     allow_headers=["*"],
 )
