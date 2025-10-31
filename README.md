@@ -4,7 +4,7 @@ Introducción al desarrollo web | Proyecto integrador 1
 ## Integrantes del equipo
 | Fotografía | Nombre | Rol |
 |-------------|---------|------|
-| <img src="img/Tania.jpeg" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Tania Martínez** | Estructura del sitio y desarrollo de API|
+| <img src="img/Tania.jpeg" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Tania Mendoza** | Estructura del sitio y desarrollo de API|
 | <img src="img/Ari.jpeg" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Arindal Contreras** | Desarrollo Quiz y estructura del sitio |
 | <img src="" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Bernardo del Rio** | Diseño visual y desarrollo del footer  |
 | <img src="" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Johan Sanchez** | Desarrollo de footer|
@@ -40,3 +40,5 @@ El sitio está diseñado con **HTML, CSS, JavaScript y Bootstrap**, y puede comp
     uvicorn main:app --reload
     ````
 
+## Dominio de la página
+https://introweb.lat
