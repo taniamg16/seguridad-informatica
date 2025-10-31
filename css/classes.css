@@ -118,6 +118,40 @@ body.dark-theme .btn-fab {
   transform: scale(1.05);
 }
 
+.prose {
+  max-width: 65ch;        
+  line-height: 1.6;
+}
+
+.tip {
+  padding-block: .25rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.tip:last-of-type {
+  border-bottom: none;
+}
+
+.ratio-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;   
+  object-fit: cover;       
+  object-position: center;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .tip {
+    margin-bottom: .25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose {
+    margin-left: 0;
+  }
+}
+
+
 
 
 
