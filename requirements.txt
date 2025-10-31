@@ -1,1 +1,5 @@
 # No dependencies needed for static site
+fastapi
+uvicorn
+pydantic
+typing-extensions
