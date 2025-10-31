@@ -6,7 +6,7 @@ Introducción al desarrollo web | Proyecto integrador 1
 |-------------|---------|------|
 | <img src="img/Tania.jpeg" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Tania Mendoza** | Estructura del sitio y desarrollo de API|
 | <img src="img/Ari.jpeg" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Arindal Contreras** | Desarrollo Quiz y estructura del sitio |
-| <img src="" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Bernardo del Rio** | Diseño visual y desarrollo del footer  |
+| <img src="img/Bernardo.jpg" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Bernardo del Rio** | Diseño visual y desarrollo del footer  |
 | <img src="" width="100" height="100" style="border-radius:50%;object-fit:cover;object-position:center top;"> | **Johan Sanchez** | Desarrollo de footer|
 
 ## Integrantes del equipo
