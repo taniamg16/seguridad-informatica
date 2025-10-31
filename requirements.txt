@@ -1,5 +1,7 @@
-# No dependencies needed for static site
-fastapi
-uvicorn
-pydantic
-typing-extensions
+# Frontend: no se requieren dependencias adicionales para el sitio estático
+# Backend: dependencias esenciales para el servidor API con FastAPI
+
+fastapi==0.115.0
+uvicorn==0.30.0
+pydantic==2.9.2
+typing-extensions==4.12.2
