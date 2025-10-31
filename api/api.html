@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 <head>
   <meta charset="utf-8" />
   <title>Alertas de Ciberseguridad</title>
@@ -7,120 +7,182 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/classes.css" rel="stylesheet">
 </head>
-<body>
-  <header class="container py-3">
-    <a id="volver" class="btn btn-outline-dark">&larr; Regresar</a>
+<body class="bg-dark text-light">
+
+  <!-- barra superior -->
+  <header class="navbar navbar-dark bg-black border-bottom border-success mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <!-- boton regresar -->
+      <a id="volver" class="btn btn-success btn-sm">&larr; Regresar</a>
+      <span class="navbar-brand mb-0 h1">panel de alertas</span>
+    </div>
   </header>
 
-  <div class="container py-4">
+  <main class="container pb-5">
+
+    <!-- fila título + recargar -->
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h1 class="h3 text-success mb-0">Alertas de Ciberseguridad</h1>
-      <button class="btn btn-success btn-lg" id="btnRecargar">Recargar</button>
+      <!-- titulo principal -->
+      <h1 class="h1 titulo-neon mb-0">Alertas de Ciberseguridad</h1>
+      <!-- boton recargar -->
+      <button class="btn btn-success btn-sm" id="btnRecargar">Recargar</button>
     </div>
 
-    <p id="msg" class="text-secondary small"></p>
+    <!-- mensaje general (lo usa tu js) -->
+    <p id="msg" class="text-muted small mb-3">Cargando...</p>
 
+    <!-- tarjetas de noticias -->
     <div class="row g-3 mb-3" id="contenedor-noticias"></div>
 
-  </div>
-
-  <!-- sección para agregar nuevas alertas -->
-  <h2 class="h4 text-success mb-3 mx-4">Sección para administradores</h2>
-  <div class="card mb-4">
-  <div class="card-body">
-    <h2 class="h5 mb-3">Agregar alerta</h2>
-    <form id="form-alerta" class="row g-2">
-      <div class="col-md-6">
-        <label class="form-label" for="titulo">Título</label>
-        <input class="form-control" id="titulo" required>
-      </div>
-      <div class="col-md-3">
-        <label class="form-label" for="severidad">Severidad</label>
-        <select class="form-select" id="severidad">
-          <option value="Alta">Alta</option>
-          <option value="Media" selected>Media</option>
-          <option value="Baja">Baja</option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <label class="form-label" for="url">URL (opcional)</label>
-        <input class="form-control" id="url" placeholder="https://...">
-      </div>
-      <div class="col-12">
-        <label class="form-label" for="descripcion">Descripción</label>
-        <textarea class="form-control" id="descripcion" rows="2"></textarea>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" for="imagen">Imagen (opcional)</label>
-        <input class="form-control" id="imagen" placeholder="../api/static/mi-img.jpg">
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" for="tags">Tags (separados por coma)</label>
-        <input class="form-control" id="tags" placeholder="malware, phishing">
-      </div>
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">Guardar alerta</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-  <div class="card mb-4">
-    <div class="card-body">
-      <h2 class="h5 mb-3">Actualizar alerta</h2>
-      <form id="form-actualizar" class="row g-2">
-        <div class="col-md-2">
-          <label class="form-label" for="edit-id">ID</label>
-          <input class="form-control" id="edit-id" type="number" min="1" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label" for="edit-titulo">Título (opcional)</label>
-          <input class="form-control" id="edit-titulo">
-        </div>
-        <div class="col-md-3">
-          <label class="form-label" for="edit-severidad">Severidad</label>
-          <select class="form-select" id="edit-severidad">
-            <option value="">(sin cambiar)</option>
-            <option value="Alta">Alta</option>
-            <option value="Media">Media</option>
-            <option value="Baja">Baja</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <label class="form-label" for="edit-url">URL</label>
-          <input class="form-control" id="edit-url" placeholder="https://...">
-        </div>
-        <div class="col-12">
-          <label class="form-label" for="edit-descripcion">Descripción</label>
-          <textarea class="form-control" id="edit-descripcion" rows="2"></textarea>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="edit-imagen">Imagen</label>
-          <input class="form-control" id="edit-imagen" placeholder="../api/static/mi-img.jpg">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="edit-tags">Tags (coma)</label>
-          <input class="form-control" id="edit-tags" placeholder="malware, phishing">
-        </div>
-        <div class="col-12">
-          <button class="btn btn-warning" type="submit">Actualizar</button>
-        </div>
-      </form>
+    <!-- paginación simple -->
+    <div class="d-flex justify-content-center gap-2 mb-5">
+      <!-- nota: los ids los usa tu js -->
+      <button id="prev" class="btn btn-outline-light btn-sm">anterior</button>
+      <button id="next" class="btn btn-outline-light btn-sm">siguiente</button>
     </div>
-  </div>
 
+    <!-- seccion admin -->
+    <h2 class="h5 text-success mb-3">Sección para administradores</h2>
 
+    <!-- buscar por id -->
+    <div class="card border-success-subtle bg-dark mb-4">
+      <div class="card-body">
+        <h3 class="h6 mb-3">Buscar alerta por ID</h3>
+        <!-- form buscar -->
+        <form id="form-buscar" class="mb-2">
+          <div class="input-group">
+            <input type="number" class="form-control bg-dark text-light border-secondary" id="buscar-id" placeholder="escribe el id de la alerta">
+            <button class="btn btn-success" type="submit">buscar</button>
+          </div>
+        </form>
+        <!-- mensaje solo para el buscador -->
+        <p id="msg-buscar" class="text-muted small"></p>
+        <!-- resultado del buscador -->
+        <div id="resultado"></div>
+      </div>
+    </div>
+
+    <!-- agregar nueva alerta -->
+    <div class="card border-success-subtle bg-dark mb-4">
+      <div class="card-body">
+        <h3 class="h6 mb-3">Agregar alerta</h3>
+        <!-- form crear -->
+        <form id="form-alerta" class="row g-2">
+          <!-- titulo -->
+          <div class="col-md-6">
+            <label class="form-label" for="titulo">título</label>
+            <input class="form-control bg-dark text-light border-secondary" id="titulo" required>
+          </div>
+          <!-- severidad -->
+          <div class="col-md-3">
+            <label class="form-label" for="severidad">severidad</label>
+            <select class="form-select bg-dark text-light border-secondary" id="severidad">
+              <option value="Alta">Alta</option>
+              <option value="Media" selected>Media</option>
+              <option value="Baja">Baja</option>
+            </select>
+          </div>
+          <!-- url -->
+          <div class="col-md-3">
+            <label class="form-label" for="url">url (opcional)</label>
+            <input class="form-control bg-dark text-light border-secondary" id="url" placeholder="https://...">
+          </div>
+          <!-- descripcion -->
+          <div class="col-12">
+            <label class="form-label" for="descripcion">descripción</label>
+            <textarea class="form-control bg-dark text-light border-secondary" id="descripcion" rows="2"></textarea>
+          </div>
+          <!-- imagen -->
+          <div class="col-md-6">
+            <label class="form-label" for="imagen">imagen (opcional)</label>
+            <input class="form-control bg-dark text-light border-secondary" id="imagen" placeholder="../api/static/mi-img.jpg">
+          </div>
+          <!-- tags -->
+          <div class="col-md-6">
+            <label class="form-label" for="tags">tags (separados por coma)</label>
+            <input class="form-control bg-dark text-light border-secondary" id="tags" placeholder="malware, phishing">
+          </div>
+          <!-- boton guardar -->
+          <div class="col-12">
+            <button class="btn btn-success btn-sm" type="submit">Guardar alerta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- actualizar alerta -->
+    <div class="card border-warning-subtle bg-dark mb-4">
+      <div class="card-body">
+        <h3 class="h6 mb-3">Actualizar alerta</h3>
+        <!-- form actualizar -->
+        <form id="form-actualizar" class="row g-2">
+          <!-- id -->
+          <div class="col-md-2">
+            <label class="form-label" for="edit-id">id</label>
+            <input class="form-control bg-dark text-light border-secondary" id="edit-id" type="number" min="1" required>
+          </div>
+          <!-- titulo -->
+          <div class="col-md-4">
+            <label class="form-label" for="edit-titulo">título (opcional)</label>
+            <input class="form-control bg-dark text-light border-secondary" id="edit-titulo">
+          </div>
+          <!-- severidad -->
+          <div class="col-md-3">
+            <label class="form-label" for="edit-severidad">severidad</label>
+            <select class="form-select bg-dark text-light border-secondary" id="edit-severidad">
+              <option value="">(sin cambiar)</option>
+              <option value="Alta">Alta</option>
+              <option value="Media">Media</option>
+              <option value="Baja">Baja</option>
+            </select>
+          </div>
+          <!-- url -->
+          <div class="col-md-3">
+            <label class="form-label" for="edit-url">url</label>
+            <input class="form-control bg-dark text-light border-secondary" id="edit-url" placeholder="https://...">
+          </div>
+          <!-- descripcion -->
+          <div class="col-12">
+            <label class="form-label" for="edit-descripcion">descripción</label>
+            <textarea class="form-control bg-dark text-light border-secondary" id="edit-descripcion" rows="2"></textarea>
+          </div>
+          <!-- imagen -->
+          <div class="col-md-6">
+            <label class="form-label" for="edit-imagen">imagen</label>
+            <input class="form-control bg-dark text-light border-secondary" id="edit-imagen" placeholder="../api/static/mi-img.jpg">
+          </div>
+          <!-- tags -->
+          <div class="col-md-6">
+            <label class="form-label" for="edit-tags">tags (coma)</label>
+            <input class="form-control bg-dark text-light border-secondary" id="edit-tags" placeholder="malware, phishing">
+          </div>
+          <!-- boton actualizar -->
+          <div class="col-12">
+            <button class="btn btn-success btn-sm" type="submit">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- tu js -->
   <script src="api.js"></script>
+  <!-- bootstrap js -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script> //cierra pestaña de noticias al presionar "regresar" 
-      document.getElementById('volver').addEventListener('click', () => {
-        if (window.opener && !window.opener.closed) {
-          try { window.opener.focus(); } catch (e) {}
-          window.close(); 
-          return;
-        }
-        window.location.href = '../html/index.html';
-      });
+
+  <!-- script para regresar -->
+  <script>
+    // cerrar o regresar a index
+    document.getElementById('volver').addEventListener('click', () => {
+      if (window.opener && !window.opener.closed) {
+        try { window.opener.focus(); } catch (e) {}
+        window.close();
+        return;
+      }
+      window.location.href = '../html/index.html';
+    });
   </script>
+
 </body>
 </html>
